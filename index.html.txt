@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Heaven Trinity: Crafting games and daily life utility apps that simplify your routine. Motto: Young's worlds.">
+    <title>Heaven Trinity - Young's Worlds</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>HT</h2> <!-- Placeholder logo; replace with <img src="images/logo.png" alt="Heaven Trinity Logo"> -->
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="neon-text">Young's Worlds</h1>
+            <p class="hero-subtitle">Crafting games and daily life utility applications that simplify your routine.</p>
+            <a href="#apps" class="cta-button">Explore Apps</a>
+        </div>
+        <div class="particles"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Heaven Trinity</h2>
+            <p class="about-text">We are a passionate team dedicated to building innovative experiences. From immersive games to smart utilities, our creations bridge the gap between technology and everyday magic. Join us in exploring the infinite possibilities of Young's worlds.</p>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <h2 class="section-title">Our Creations</h2>
+            <p class="section-subtitle">Discover apps that redefine simplicity and fun. More coming soon!</p>
+            <div class="apps-grid">
+                <!-- Placeholder App Cards; Add more as needed -->
+                <div class="app-card">
+                    <div class="app-icon-placeholder"></div>
+                    <h3>App Name 1</h3>
+                    <p>A utility app that streamlines your daily tasks with AI-powered insights.</p>
+                    <div class="app-rating">★ 4.5 (1K+ downloads)</div>
+                    <a href="https://play.google.com/store/apps/dev?id=8574722166288241827" class="app-link" target="_blank">View on Play Store</a>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon-placeholder"></div>
+                    <h3>Game Title</h3>
+                    <p>An adventurous game set in futuristic realms, blending strategy and exploration.</p>
+                    <div class="app-rating">★ 4.8 (500+ downloads)</div>
+                    <a href="https://play.google.com/store/apps/dev?id=8574722166288241827" class="app-link" target="_blank">View on Play Store</a>
+                </div>
+                <!-- Add more cards here -->
+            </div>
+            <a href="https://play.google.com/store/apps/dev?id=8574722166288241827" class="cta-button full-width" target="_blank">All Apps on Google Play</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">Ready to collaborate or just say hi? Reach out to us.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <!-- Note: Form needs backend (e.g., Formspree) for real submissions; placeholder for now -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Heaven Trinity. All rights reserved. Motto: Young's worlds.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
