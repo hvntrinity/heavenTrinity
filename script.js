@@ -1,43 +1,131 @@
-// Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+/**
+ * Heaven Trinity - Professional Website Script
+ * Handles interactivity, scrolling animations, and form submissions.
+ */
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
 
-// Close menu on link click
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+            // Toggle hamburger animation
+            const spans = hamburger.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                navMenu.style.display = 'flex';
+                // For mobile view, we need to handle the display property if it was hidden
+                navMenu.style.position = 'fixed';
+                navMenu.style.top = '80px';
+                navMenu.style.left = '0';
+                navMenu.style.width = '100%';
+                navMenu.style.background = 'var(--glass)';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.padding = '40px';
+                navMenu.style.textAlign = 'center';
+                navMenu.style.backdropFilter = 'blur(20px)';
+                navMenu.style.borderBottom = '1px solid var(--border)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                navMenu.style.display = ''; // Reset to CSS default
+            }
+        });
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu && navMenu.classList.contains('active')) {
+                hamburger.click();
+            }
         });
     });
-});
 
-// Form Submission (Placeholder - integrate with Formspree or Netlify for real emails)
-document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Message sent! (Demo - add backend for real functionality)');
-    this.reset();
-});
+    // Smooth Scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
 
-// Navbar Background on Scroll
-window.addEventListener('scroll', () => {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Navbar Scrolled State
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-    } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.padding = '10px 0';
+            navbar.style.background = 'rgba(2, 6, 23, 0.95)'; // Matches --background
+            navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+        } else {
+            navbar.style.padding = '0';
+            navbar.style.background = 'var(--glass)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
+
+    // Contact Form Handling
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Visual feedback
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                alert('Thank you for contacting Heaven Trinity! Our team will get back to you shortly.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                this.reset();
+            }, 1500);
+        });
     }
+
+    // Reveal animations on scroll (Simple Intersection Observer)
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.feature-card, .app-card, .section-header');
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+        revealObserver.observe(el);
+    });
 });
