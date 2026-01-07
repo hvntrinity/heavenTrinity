@@ -13,30 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-
-            // Toggle hamburger animation
-            const spans = hamburger.querySelectorAll('span');
+            
+            // Prevent body scroll when menu is open
             if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-                navMenu.style.display = 'flex';
-                // For mobile view, we need to handle the display property if it was hidden
-                navMenu.style.position = 'fixed';
-                navMenu.style.top = '80px';
-                navMenu.style.left = '0';
-                navMenu.style.width = '100%';
-                navMenu.style.background = 'var(--glass)';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.padding = '40px';
-                navMenu.style.textAlign = 'center';
-                navMenu.style.backdropFilter = 'blur(20px)';
-                navMenu.style.borderBottom = '1px solid var(--border)';
+                body.style.overflow = 'hidden';
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                navMenu.style.display = ''; // Reset to CSS default
+                body.style.overflow = '';
             }
         });
     }
